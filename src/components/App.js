@@ -30,20 +30,15 @@ export const App = () => {
     }
   };
 
-  // const countTotalFeedback = () => {
-  //   const optionsValue = Object.values(this.state);
-  //   return optionsValue.reduce((acc, value) => value + acc, 0);
-  // };
+  const countTotalFeedback = () => {
+    return good + neutral + bad;
+  };
 
-  // const countFeedbackPercentage = (amount, total) =>
-  //   Math.round(total ? (amount / total) * 100 : 0);
+  const countFeedbackPercentage = (amount, total) =>
+    Math.round(total ? (amount / total) * 100 : 0);
 
-  // const options = Object.keys(this.state);
-  // const totalFb = this.countTotalFeedback();
-  // const positivePercentage = this.countFeedbackPercentage(
-  //   this.state.good,
-  //   totalFb
-  // );
+  const totalFb = countTotalFeedback();
+  const positivePercentage = countFeedbackPercentage(good, totalFb);
 
   return (
     <Box p={5} display="flex" flexDirection="column" as="main">
@@ -54,17 +49,17 @@ export const App = () => {
         />
       </Section>
 
-      {/* <Section title="Statistics">
+      <Section title="Statistics">
         {totalFb > 0 ? (
           <Statistics
-            {...this.state}
+            {...{ good, neutral, bad }}
             total={totalFb}
             positivePercentage={positivePercentage}
           />
         ) : (
           <Notification message="There is no feedback" />
         )}
-      </Section> */}
+      </Section>
     </Box>
   );
 };
